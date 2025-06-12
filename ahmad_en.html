@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Price Checker</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        h1 { color: #333; }
+        input[type="text"] { padding: 10px; font-size: 16px; width: 200px; }
+        button { padding: 10px 15px; font-size: 16px; }
+        table { margin-top: 20px; width: 100%; max-width: 400px; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+        th { background-color: #eee; }
+    </style>
+</head>
+<body>
+    <h1>Check Price by Code</h1>
+    <input type="text" id="codeInput" placeholder="Enter code">
+    <button onclick="checkPrice()">Check</button>
+    <table id="resultTable" style="display:none;">
+        <thead>
+            <tr><th>Code</th><th>Price</th></tr>
+        </thead>
+        <tbody id="resultBody"></tbody>
+    </table>
+
+    <script>
+        const prices = {
+            "1500": "$12.00",
+            "300": "$14.00"
+        };
+
+        function checkPrice() {
+            const code = document.getElementById("codeInput").value;
+            const table = document.getElementById("resultTable");
+            const tbody = document.getElementById("resultBody");
+            tbody.innerHTML = "";
+
+            if (prices[code]) {
+                const row = `<tr><td>${code}</td><td>${prices[code]}</td></tr>`;
+                tbody.innerHTML = row;
+                table.style.display = "table";
+            } else {
+                const row = `<tr><td colspan="2">Code not found</td></tr>`;
+                tbody.innerHTML = row;
+                table.style.display = "table";
+            }
+        }
+    </script>
+</body>
+</html>
